@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+{% load bootstrap %}
+{% load new_class %}
+{% block content %}
+
+<div class="container p-3">
+
+    <h1 class="text-center">Formulário de tutorial</h1>
+    <form method="POST" role="form">
+        {% csrf_token %}
+        <h5 class="form-label" for="form3Example1q">Título</h5>
+        {{form.titulo|new_class:'form-control'}}
+        <br>
+        <div class="row">
+
+            <div class="col-6">
+    
+                <h5 class="form-label" for="form3Example1q">Aplicação do tutorial</h5>
+                {{form.aplicacao|new_class:'form-control'}}
+            </div>
+            <div class="col-6">
+                <h5 class="form-label" for="form3Example1q">Adicionar aplicação</h5>
+                <a href="{% url 'aplicacao:create-aplicacao' %}" class="btn btn-success">
+    
+                    Adicionar
+                </a>
+            </div>
+        </div>
+        <br>
+        <h5 class="form-label" for="form3Example1q">Conteúdo do tutorial</h5>
+    
+        {{form.conteudo|new_class:'form-control'}}
+     <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{form.errors}}
+      </div>
+
+    {% endif %}
+</div>
+
+
+{% endblock content %}
